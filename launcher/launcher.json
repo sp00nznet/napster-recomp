@@ -1,0 +1,17 @@
+{
+  "title": "Napster",
+  "repo": "sp00nznet/napster-recomp",
+  "accent": "#1a1a1a",
+  "note": {
+    "windows": "The whole setup takes about 10 minutes and 1 GB. Python, MSYS2 (for the OpenNap test server) and the Visual Studio Build Tools are installed if they are missing; the Build Tools are about 3 GB and add 15 to 30 minutes. Point it at napv2b10-3.exe (Napster 2.0 beta 10.3; it is unpacked, never run). A 2001 network client: it is set up to talk to a local OpenNap server on 127.0.0.1 only. Read SECURITY.md."
+  },
+  "game": {
+    "name": "Napster 2.0 beta 10.3",
+    "files": ["napv2b10-3.exe"]
+  },
+  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "pcrecomp-napster", "dir": "pcrecomp" }],
+  "setup": {
+    "windows": ["cmd", "/c", "Setup.cmd", "-Yes", "-GameDir", "{game}"]
+  },
+  "play": "Napster (recomp).lnk"
+}

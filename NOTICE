@@ -1,0 +1,12 @@
+Napster recomp
+
+The host is derived from the Sambar Server recomp's host, and runs on
+pcrecomp's native32 runtime (https://github.com/sp00nznet/pcrecomp). MIT.
+
+Napster 2.0 beta 10.3 is (c) 1999-2001 Napster, Inc. Its license (in its
+installer) forbids redistributing it. No part of it is included: no
+executable, DLL, plug-in, font, license text, installer, or generated source.
+
+The test server, OpenNap 0.44 (https://sourceforge.net/projects/opennap/), is
+GPL. It is not included either: tools/opennap.ps1 downloads its source and
+builds it into opennap/ (git-ignored), where it runs as a separate program.

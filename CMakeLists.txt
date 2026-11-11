@@ -1,0 +1,58 @@
+# =============================================================================
+# Napster 2.0 beta 10.3 - static recompilation host (32-bit, MSVC x86)
+#
+#   py -3 run_lift.py  # -> src/recomp/gen/  (needs work/functions.json)
+#   build.cmd                # vcvarsall x86 + CMake + Ninja -> build/napsterrecomp.exe
+#   build\napsterrecomp.exe --run --watchdog 60
+# =============================================================================
+cmake_minimum_required(VERSION 3.20)
+project(napster C)
+
+if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
+  message(FATAL_ERROR "the host must be 32-bit: use build.cmd (vcvarsall x86)")
+endif()
+if(NOT MSVC)
+  message(FATAL_ERROR "runtime/native32 is MSVC x86 inline assembly")
+endif()
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE RelWithDebInfo)
+endif()
+# The C runtime linked in: a test VM has no 32-bit VC++ redistributable.
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
+set(PCRECOMP "${CMAKE_SOURCE_DIR}/../pcrecomp" CACHE PATH "pcrecomp checkout")
+file(GLOB_RECURSE GEN_SOURCES CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/src/recomp/gen/*.c")
+if(NOT GEN_SOURCES)
+  message(FATAL_ERROR "src/recomp/gen is empty -- run `py -3 run_lift.py` first")
+endif()
+
+add_executable(napster
+  src/runtime/host.c
+  ${PCRECOMP}/runtime/native32/native32.c
+  ${PCRECOMP}/runtime/native32/modules32.c
+  ${PCRECOMP}/runtime/native32/net32.c
+  ${PCRECOMP}/runtime/native32/reg32.c
+  ${PCRECOMP}/runtime/recomp32/image_loader.c
+  ${PCRECOMP}/runtime/recomp32/recomp_trace.c
+  ${GEN_SOURCES}
+)
+target_include_directories(napster PRIVATE
+  src/runtime src/recomp/gen ${PCRECOMP}/runtime/native32 ${PCRECOMP}/runtime/recomp32)
+target_compile_definitions(napster PRIVATE RECOMP_RETADDR=0u _CRT_SECURE_NO_WARNINGS
+                                            RECOMP_FLAT_MEMORY RECOMP_LOCAL_REGS)
+# Linked high and not relocatable, so the guest's 0x00400000 and 0x10000000..0x10200000 are free.
+target_link_options(napster PRIVATE /BASE:0x60000000 /FIXED:NO /DYNAMICBASE:NO
+                                       /NXCOMPAT /LARGEADDRESSAWARE /STACK:0x1000000
+                                       /MANIFESTUAC:NO /MANIFEST:NO)
+set(GEN_OPT "/O2" CACHE STRING "optimisation for the generated C")
+set_source_files_properties(${GEN_SOURCES} PROPERTIES COMPILE_OPTIONS "/w;${GEN_OPT}")
+set_source_files_properties(src/runtime/host.c PROPERTIES COMPILE_OPTIONS "/W3")
+target_link_libraries(napster PRIVATE user32 gdi32 kernel32 shell32 advapi32 ws2_32)
+
+option(NAPSTER_TRACE "record a ring buffer of lifted function entries" OFF)
+if(NAPSTER_TRACE)
+  target_compile_definitions(napster PRIVATE RECOMP_TRACE=1)
+endif()
+
+# The output name keeps Windows' compatibility database off the host.
+set_target_properties(napster PROPERTIES OUTPUT_NAME napsterrecomp)
