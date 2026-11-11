@@ -43,7 +43,7 @@ program, bound to `127.0.0.1`.
 | Headless | yes: the harness runs every client on a Win32 desktop of its own, never on a screen |
 | Conformance harness | `tools/nap_diff.py`: **58/58** (12 steps and 46 messages, original vs recomp) on a machine with the program; SKIP without it |
 
-Built and tested against pcrecomp branch `pcrecomp-napster` (not yet on
+Built and tested against pcrecomp branch `pcrecomp-napster` at `fca80cd` (not yet on
 `main`; see Building from source).
 
 ## Screenshots
