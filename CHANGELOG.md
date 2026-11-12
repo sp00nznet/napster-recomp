@@ -6,6 +6,15 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- `CONTRIBUTING.md`, `CONTRIBUTORS.md`, `docs/building.md` and
+  `docs/testing.md` (the README's step-by-step and harness sections, moved).
+- `setup.sh`, which says Linux and macOS are not supported yet and exits.
+- `.github/workflows/installer.yml`, run by hand only.
+
+### Changed
+- README in the house order; `NOTICE` is now `NOTICE.md`.
+
 ## [0.1.0] - 2026-11-11
 
 ### Added
