@@ -9,7 +9,7 @@
     "name": "Napster 2.0 beta 10.3",
     "files": ["napv2b10-3.exe"]
   },
-  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "pcrecomp-napster", "dir": "pcrecomp" }],
+  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "main", "dir": "pcrecomp" }],
   "setup": {
     "windows": ["cmd", "/c", "Setup.cmd", "-Yes", "-GameDir", "{game}"]
   },

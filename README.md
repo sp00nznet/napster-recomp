@@ -10,7 +10,7 @@ gone, so it talks to a local [OpenNap](https://sourceforge.net/projects/opennap/
 0.44 test server on `127.0.0.1`, and nowhere else.
 
 Built on the [pcrecomp](https://github.com/sp00nznet/pcrecomp) toolchain,
-branch **`pcrecomp-napster`** (not yet merged to `main`), and following its
+branch `main`, and following its
 shared house style.
 
 > **Security:** a 2001 network client with no fixes since, and the recompiled
@@ -43,7 +43,7 @@ There is no installer release yet.
    `127.0.0.1` and the recompiled client against it.
 
 The script checks for Python 3.10+, `pefile` and `capstone`, pcrecomp (cloned
-beside this folder on the `pcrecomp-napster` branch), the Visual Studio 2022
+beside this folder), the Visual Studio 2022
 C++ compiler and MSYS2 (to build OpenNap), and **asks** before installing any
 of them. Then it unpacks Napster into `game\`, builds OpenNap into
 `opennap\`, catalogs, lifts and builds `build\napsterrecomp.exe`; a rerun skips
@@ -65,7 +65,7 @@ vs recomp on the same host:
 | Chat, hot list, instant messages, the player | not checked yet |
 | Conformance harness (`tools/nap_diff.py`) | **58/58**: 12 steps and 46 messages (2026-11-11); SKIP without the program |
 
-Tested against pcrecomp `pcrecomp-napster` at `fca80cd`.
+Tested against pcrecomp `main` at `6e4b2ff`.
 [ROADMAP.md](ROADMAP.md) is what comes next.
 
 ## Screenshots

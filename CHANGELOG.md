@@ -6,6 +6,9 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+- Builds against pcrecomp main; the `pcrecomp-napster` branch is merged.
+  The registry sandbox is `regbox32.c` there.
+
 ### Added
 - `CONTRIBUTING.md`, `CONTRIBUTORS.md`, `docs/building.md` and
   `docs/testing.md` (the README's step-by-step and harness sections, moved).

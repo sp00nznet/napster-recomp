@@ -32,7 +32,7 @@ harness, at a public OpenNap network or any server not on `127.0.0.1`
 ## Where a fix belongs
 
 - A bug in the lifter, the catalog, the module loader or the native bridge
-  (`net32.c`, `reg32.c`) belongs in
+  (`net32.c`, `regbox32.c`) belongs in
   [pcrecomp](https://github.com/sp00nznet/pcrecomp), on a branch with a PR, not
   here.
 - A fix to the client itself is a patch in `run_lift.py` or `tools/unpack.py`,

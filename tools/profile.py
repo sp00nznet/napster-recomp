@@ -4,7 +4,7 @@
     py -3 tools/profile.py <name> [<folder>]      # default folder: profiles/<name>
 
 The host keeps each instance's registry under
-HKCU\\Software\\pcrecomp\\sandbox\\napster-<name> (pcrecomp reg32.c). This
+HKCU\\Software\\pcrecomp\\sandbox\\napster-<name> (pcrecomp regbox32.c). This
 writes there what the Napster installer writes to HKLM: the file types
 (game/filetypes.reg, which the client reads at start and cannot run
 without) and InstallPath, the client's folder. The folder gets copies of the

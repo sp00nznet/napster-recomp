@@ -6,7 +6,7 @@
 napv2b10-3.exe ──tools/unpack.py──> game\        (pcrecomp extract_vise.py; server names -> 127.0.0.1 / .invalid)
 game\ ──tools/catalog.py──> work\rebased\, work\*.functions.json   (rebase.py, disasm32)
 work\ ──run_lift.py──> src\recomp\gen\            (pcrecomp drive32: lift32 + generate)
-src\ ──build.cmd──> build\napsterrecomp.exe      (MSVC x86, pcrecomp native32 + modules32 + net32 + reg32)
+src\ ──build.cmd──> build\napsterrecomp.exe      (MSVC x86, pcrecomp native32 + modules32 + net32 + regbox32)
 ```
 
 At run time:
@@ -51,7 +51,7 @@ ordinal, and window-message sockets: `WSAAsyncSelect`).
 - **Imports by ordinal.** A host redirect by name (`native32_redirect`)
   missed `WSOCK32 #4`; bind now looks up the name an ordinal is exported
   under. Without that, the loopback guard below would not have applied.
-- **Loopback only** (`net32.c`) and **a registry per instance** (`reg32.c`):
+- **Loopback only** (`net32.c`) and **a registry per instance** (`regbox32.c`):
   see SECURITY.md. The second is also what lets two clients run at once: the
   client keeps its user in `HKLM\Software\Napster`.
 - **Native DLLs from the guest's folder.** The client loads its plug-ins

@@ -7,11 +7,11 @@ What `Setup.cmd` does, by hand. `tools/setup.ps1` runs exactly these steps.
 Prerequisites: Windows 10/11, **Python 3.10+** (`py -3 --version`), **git**,
 **Visual Studio 2022** (or its Build Tools) with *Desktop development with
 C++*, **MSYS2** in `C:\msys64`, and the pcrecomp toolkit cloned **beside**
-this repository as `pcrecomp`, on the `pcrecomp-napster` branch:
+this repository as `pcrecomp`:
 
 ```
 some-folder\
-  pcrecomp\                     <- git clone -b pcrecomp-napster https://github.com/sp00nznet/pcrecomp
+  pcrecomp\                     <- git clone https://github.com/sp00nznet/pcrecomp
   napster\                      <- this repository
 ```
 
@@ -88,11 +88,10 @@ Steps 4 to 6 above are the build. `PCRECOMP` (Python) and `-DPCRECOMP=` (CMake, 
 `set CMAKE_ARGS=...` for `build.cmd`) point at a toolkit checkout other than
 `..\pcrecomp`; the lifter and the runtime must come from the same tree.
 
-This needs pcrecomp's `pcrecomp-napster` branch until it is merged. It is
-`pcrecomp-sambar` (the module loader, rebase, the shared lift driver) plus
-`pcrecomp-msvceh` (MSVC C++ exception frames) plus what this client needed:
+This needs pcrecomp main: the module loader, rebase, the shared lift driver,
+MSVC C++ exception frames, and what this client needed:
 `native32_net_loopback_only` (`net32.c`), `native32_registry_sandbox`
-(`reg32.c`), ATL window-thunk emulation, redirects that cover imports by
+(`regbox32.c`), ATL window-thunk emulation, redirects that cover imports by
 ordinal, `--original` entry points, and `tools/assets/extract_vise.py`. More
 in [architecture.md](architecture.md).
 
