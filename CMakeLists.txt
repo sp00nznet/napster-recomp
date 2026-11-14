@@ -31,7 +31,7 @@ add_executable(napster
   ${PCRECOMP}/runtime/native32/native32.c
   ${PCRECOMP}/runtime/native32/modules32.c
   ${PCRECOMP}/runtime/native32/net32.c
-  ${PCRECOMP}/runtime/native32/reg32.c
+  ${PCRECOMP}/runtime/native32/regbox32.c
   ${PCRECOMP}/runtime/recomp32/image_loader.c
   ${PCRECOMP}/runtime/recomp32/recomp_trace.c
   ${GEN_SOURCES}
