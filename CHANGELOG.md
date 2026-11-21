@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-20
+
 - Builds against pcrecomp main; the `pcrecomp-napster` branch is merged.
   The registry sandbox is `regbox32.c` there.
 
